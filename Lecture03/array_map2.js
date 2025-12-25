@@ -1,0 +1,11 @@
+const kvArray = [
+    {key: 1,value:10},
+    {key: 2,value:20}
+];
+
+const refomatted = kvArray.map(
+    ({key,value}) => ({[key]:value})  
+);
+
+console.log(kvArray)
+console.log(refomatted)
