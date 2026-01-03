@@ -3,27 +3,27 @@ const library = {
 
     addBook: function (book) {
         // TODO: เขียนโค้ดสำหรับเพิ่มหนังสือ
-        this.books.push(book);
+        const exists = this.books.some(b => b.title === book.title);
+        if (!exists) {   
+            this.books.push(book);
+        }
     },
 
     removeBook: function (title) {
         // TODO: เขียนโค้ดสำหรับลบหนังสือตามชื่อ
-        for (let i = 0; i < this.books.length; i++) {
-            if (this.books[i].title === title) {
-                this.books.splice(i, 1);
-                break;
-            }
-        }
+        this.books = this.books.filter(book => book.title !== title);
     },
 
     listBooks: function () {
         // TODO: เขียนโค้ดสำหรับแสดงรายชื่อหนังสือทั้งหมด
-
+        this.books.forEach((book, index) => {
+            console.log(`${index + 1}. ชื่อ: ${book.title}, ผู้แต่ง: ${book.author}, ปีที่พิมพ์: ${book.year}, สถานะ: ${book.isRead ? 'อ่านแล้ว' : 'ยังไม่ได้อ่าน'}`)
+        });
     },
 
     getUnreadBooks: function () {
         // TODO: เขียนโค้ดสำหรับส่งคืนหนังสือที่ยังไม่ได้อ่าน
-
+        return this.books.filter(book => !book.isRead);
     }
 };
 
